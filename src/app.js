@@ -4,6 +4,8 @@
 import { formatDate } from "./utils.js";
 import { validateTask } from "./utils.js";
 import { mergeTaskUpdate } from "./utils.js";
+import { fetchSampleUsers } from './api.js';
+import { createTask } from './utils.js';
 
 //testing out functions
 console.log('Server starting. . .');
@@ -12,3 +14,19 @@ console.log(validateTask());
 console.log(validateTask({ title: "Bring index card", dueDate: "2026-07-17"}));
 console.log(mergeTaskUpdate({title: "Bring index card"}, {title: "Bring water bottle"} ));
 
+//gt4
+(async () => {
+  try {
+    const users = await fetchSampleUsers();
+    console.log('Sample users:', users);
+  } catch (error) {
+    console.error('Failed to fetch sample users:', error);
+  }
+
+  try {
+    const task = createTask({ title: 'Write project report', dueDate: '2026-08-15' });
+    console.log('Created task:', task);
+  } catch (error) {
+    console.error('Failed to create task:', error);
+  }
+})();

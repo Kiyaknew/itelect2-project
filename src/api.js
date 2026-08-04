@@ -13,6 +13,9 @@ export async function fetchSampleUsers() {
         console.error('fetchSampleUsers error:', error);
         return [];
     }
+    finally {
+        console.log('fetchSampleUsers attempt complete');
+    }
 }
 
 export function fetchSampleUsersPromise() {

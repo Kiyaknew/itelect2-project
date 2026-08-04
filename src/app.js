@@ -6,6 +6,7 @@ import { validateTask } from "./utils.js";
 import { mergeTaskUpdate } from "./utils.js";
 import { fetchSampleUsers } from './api.js';
 import { createTask } from './utils.js';
+import { TaskValidationError } from "./utils.js";
 
 //testing out functions
 console.log('Server starting. . .');
@@ -28,5 +29,16 @@ console.log(mergeTaskUpdate({title: "Bring index card"}, {title: "Bring water bo
     console.log('Created task:', task);
   } catch (error) {
     console.error('Failed to create task:', error);
+  }
+
+  try{
+    const newTask = createTask({ title: 'Missing due date' });
+    console.log('Created task:', newTask);
+  } catch (error) {
+    if (error instanceof TaskValidationError) {
+      console.error('Task validation failed:', error.message);
+    } else {
+      console.error('Unexpexted error creating task:', error);
+    }
   }
 })();

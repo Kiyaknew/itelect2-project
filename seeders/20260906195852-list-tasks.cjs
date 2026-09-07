@@ -30,4 +30,4 @@ module.exports = {
      await queryInterface.bulkDelete('Tasks', null, {});
    await queryInterface.bulkDelete('Users', null, {});
   }
-};
+};//new branch
